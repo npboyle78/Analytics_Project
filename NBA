@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Required meta tags -->
+    	<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    	<!-- Bootstrap CSS -->
+   		 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<style>
+			header {
+				color: white;
+				background-color: black; 
+				text-align: center;
+				border: 2px solid white;
+				font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif; 
+				opacity: 0.7;
+			}
+
+			body {
+				background: url(Sports_Analytics_DB/nbaBackgroundBW.jpg) no-repeat center center fixed;
+  
+  				-webkit-background-size: cover;
+  				-moz-background-size: cover;
+  				-o-background-size: cover;
+  				background-size: cover;
+				}
+			#TitleText {
+				height: auto;
+				width: auto;
+				vertical-align: middle;
+				text-decoration: underline;
+			}
+			.Overview {
+				position: relative;
+				top: 0px;
+				color: white;
+				border: 1px dotted black;
+				background-color: grey;
+				font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+				text-align: left;
+				padding-left: 20px;
+				padding-right: 20px;
+			}
+			button, select {
+				position: relative;
+				font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+				width: 200px;
+				opacity: 0.9;
+			}
+			select div option {
+				position: relative;
+				text-align: center;
+			}
+			.dropbtn {
+				  background-color: #3498DB;
+				  color: white;
+				  padding: 16px;
+				  font-size: 16px;
+				  border: 1px solid black;
+				  cursor: pointer;
+			}
+			.btn-group1, .btn-group2, .btn-group3 {
+  				display: inline-block;
+  				border: 2px solid white;
+  			}
+			.dropbtn:hover, .dropbtn:focus {
+  				background-color: #2980B9;
+			}
+			.dropdownData {
+				  display: none;
+				  position: absolute;
+				  width: 200px;
+				  background-color: #f1f1f1;
+				  min-width: 160px;
+				  overflow: auto;
+				  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+			}
+			.dropdownData option {
+				  color: black;
+				  padding: 12px 16px;
+				  text-decoration: none;
+				  display: inline-block;
+			}
+			.show {
+				display: block;
+			}
+			.StatDescriptions {
+				color: white;
+				position: relative;
+				top: 400px;
+				border: 2px dotted white;
+				background-color: grey;
+				font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+			}
+			.StatDescriptions li span {
+				position: relative;
+			}
+			div.StatDescriptionsBackground, div.OverviewBackground {
+				opacity: 0.7;
+			}
+			ul {
+				text-align: left;
+			}
+			#ButtonCont {
+				position: relative;
+				top: 50px;
+				z-index: 99;
+			}
+			#statTable {
+				width: 100%;
+				color: white;
+				position: relative;
+				top: 100px;
+				border: 2px solid white;
+				background-color: grey;
+				opacity: 0.7;
+			}
+			tr, th, td {
+				border: 0.50px solid white;
+			}
+		</style>
+		<title>NB Analytical Database</title>
+	</head>
+	<header>
+		<div class="container-fluid">
+			<div id="TitleText">
+				<h1>NB's Analytical Database</h1>
+			</div>
+		</div>
+	</header>
+	<body style="text-align: center;">
+		<div class="OverviewBackground">
+			<div class="Overview">
+				<p><h6><u><b>Directions</b></u>:  Select a team, a statistic, and hit SEARCH to reveal the ten most efficient lineups for the specified team, in the specified statistical category, that appeared on the floor together during the 2017-18 NBA season for a minimum of 50 minutes.</h6></p>
+				
+				<p><h6>The purpose of this database is to display my coding experience in the following languages: <b><u>HTML</u>, <u>CSS</u>, <u>Javascript</u>, <u>SQL</u>, and <u>PHP</u>.</b></h6></p>
+			</div>
+		</div>
+		<div class="container-fluid" id="ButtonCont">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="btn-group1" id="custom-select">
+	    				<select style="width: 160px;" id="btnGroupDrop1" type="button" class="dropbtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	    					<div id="nbaTeams" class="dropdownData">
+	    						<option id="team_name" class="dropdown-item" href="#">SELECT TEAM</option>
+							   	<option value="Blazers" id="team_name" class="dropdown-item" href="#">BLAZERS</option>
+							   	<option value="Bucks" id="team_name" class="dropdown-item" href="#">BUCKS</option>
+							    <option value="Bulls" id="team_name" class="dropdown-item" href="#">BULLS</option>
+							    <option value="Cavaliers" id="team_name" class="dropdown-item" href="#">CAVALIERS</option>
+							    <option value="Celtics" id="team_name" class="dropdown-item" href="#">CELTICS</option>
+							    <option value="Clippers" id="team_name" class="dropdown-item" href="#">CLIPPERS</option>
+							   	<option value="Grizzlies" id="team_name" class="dropdown-item" href="#">GRIZZLIES</option>
+						     	<option value="Hawks" id="team_name" class="dropdown-item" href="#">HAWKS</option>
+						      	<option value="Heat" id="team_name" class="dropdown-item" href="#">HEAT</option>
+						      	<option value="Hornets" id="team_name" class="dropdown-item" href="#">HORNETS</option>
+						      	<option value="Jazz" id="team_name" class="dropdown-item" href="#">JAZZ</option>
+						      	<option value="Kings" id="team_name" class="dropdown-item" href="#">KINGS</option>
+						      	<option value="Knicks" id="team_name" class="dropdown-item" href="#">KNICKS</option>
+							  	<option value="Lakers" id="team_name" class="dropdown-item" href="#">LAKERS</option>
+						      	<option value="Magic" id="team_name" class="dropdown-item" href="#">MAGIC</option>
+						      	<option value="Mavericks" id="team_name" class="dropdown-item" href="#">MAVERICKS</option>
+						      	<option value="Nets" id="team_name" class="dropdown-item" href="#">NETS</option>
+						      	<option value="Nuggets" id="team_name" class="dropdown-item" href="#">NUGGETS</option>
+						      	<option value="Pacers" id="team_name" class="dropdown-item" href="#">PACERS</option>
+						      	<option value="Pelicans" id="team_name" class="dropdown-item" href="#">PELICANS</option>
+						      	<option value="Pistons" id="team_name" class="dropdown-item" href="#">PISTONS</option>
+						      	<option value="Raptors" id="team_name" class="dropdown-item" href="#">RAPTORS</option>
+						      	<option value="Rockets" id="team_name" class="dropdown-item" href="#">ROCKETS</option>
+						      	<option value="Sixers" id="team_name" class="dropdown-item" href="#">SIXERS</option>
+						      	<option value="Spurs" id="team_name" class="dropdown-item" href="#">SPURS</option>
+						      	<option value="Suns" id="team_name" class="dropdown-item" href="#">SUNS</option>
+						      	<option value="Thunder" id="team_name" class="dropdown-item" href="#">THUNDER</option>
+						      	<option value="Timberwolves" id="team_name" class="dropdown-item" href="#">TIMBERWOLVES</option>
+						      	<option value="Trailblazers" id="team_name" class="dropdown-item" href="#">TRAILBLAZERS</option>					     
+						      	<option value="Warriors" id="team_name" class="dropdown-item" href="#">WARRIORS</option>				 
+						      	<option value="Wizards" id="team_name" class="dropdown-item" href="#">WIZARDS</option>
+							</div>
+						</select>
+					</div>
+				</div>			
+				<div class="col-md-4">
+					<div class="btn-group2" id="custom-select">
+	    				<select style="width: 140px;" id="btnGroupDrop2" type="button" class="dropbtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	    					<div id="statCats" class="dropdownData">
+						      	<option id="stat_name" class="dropdown-item" href="#">SELECT STAT</option>
+						      	<option value="OFFRTG" id="stat_name" class="dropdown-item" href="#">OFFRTG</option>
+						      	<option value="DEFRTG" id="stat_name" class="dropdown-item" href="#">DEFRTG</option>
+						      	<option value="NETRTG" id="stat_name" class="dropdown-item" href="#">NETRTG</option>
+						      	<option value="ASTPERCENTAGE" id="stat_name" class="dropdown-item" href="#">AST%</option>
+						     	<option value="ASTTO" id="stat_name" class="dropdown-item" href="#">AST/TO</option>
+							   	<option value="ASTRATIO" id="stat_name" class="dropdown-item" href="#">AST RATIO</option>
+							    <option value="OREBPERCENTAGE" id="stat_name" class="dropdown-item" href="#">OREB%</option>
+							    <option value="DREBPERCENTAGE" id="stat_name" class="dropdown-item" href="#">DREB%</option>
+							    <option value="REBPERCENTAGE" id="stat_name" class="dropdown-item" href="#">REB%</option>
+							    <option value="TORATIO" id="stat_name" class="dropdown-item" href="#">TO RATIO</option>
+							    <option value="EFGPERCENTAGE" id="stat_name" class="dropdown-item" href="#">EFG%</option>
+							    <option value="TSPERCENTAGE" id="stat_name" class="dropdown-item" href="#">TS%</option>
+							    <option value="PACE" id="stat_name" class="dropdown-item" href="#">PACE</option>
+							    <option value="PIE" id="stat_name" class="dropdown-item" href="#">PIE</option>
+							</div>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="btn-group3">
+						<button style="width: 150px;" class="dropbtn" type="button" id="SearchID">
+							<b>SEARCH</b>
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<table id="statTable">
+						<tr>
+							<th>LINEUP</th>
+							<th>GP</th>
+							<th>MIN</th>
+							<th>OFFRTG</th>
+						</tr>
+						<tr>
+							<td>...</td>
+							<td>...</td>
+							<td>...</td>
+							<td>...</td>
+						</tr>
+						<tr>
+							<td>...</td>
+							<td>...</td>
+							<td>...</td>
+							<td>...</td>
+						</tr>
+						<tr>
+							<td>...</td>
+							<td>...</td>
+							<td>...</td>
+							<td>...</td>
+						</tr>
+						<tr>
+							<td>...</td>
+							<td>...</td>
+							<td>...</td>
+							<td>...</td>
+						</tr>
+						<tr>
+							<td>...</td>
+							<td>...</td>
+							<td>...</td>
+							<td>...</td>
+						</tr>
+						<tr>
+							<td>...</td>
+							<td>...</td>
+							<td>...</td>
+							<td>...</td>
+						</tr>
+						<tr>
+							<td>...</td>
+							<td>...</td>
+							<td>...</td>
+							<td>...</td>
+						</tr>
+						<tr>
+							<td>...</td>
+							<td>...</td>
+							<td>...</td>
+							<td>...</td>
+						</tr>
+						<tr>
+							<td>...</td>
+							<td>...</td>
+							<td>...</td>
+							<td>...</td>
+						</tr>
+						<tr>
+							<td>...</td>
+							<td>...</td>
+							<td>...</td>
+							<td>...</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="StatDescriptionsBackground">
+			<div class="StatDescriptions">
+				<h3 id="StatDescriptionsTitle"><u>Description of Statistical Categories</u>:</h3>
+				<ul><h5>
+					<li><span><u>GP</u>:  Number of games in which the lineup appeared.</span></li>
+					<li><span><u>MIN</u>:  Minutes the lineup played together.</span></li>
+					<li><span><u>OFFRTG</u>:  Number of points produced by the lineup per hundred offensive possessions.</span></li>
+					<li><span><u>DEFRTG</u>:  Number of points allowed by the lineup per hundred defensive possessions.</span></li>
+					<li><span><u>NETRTG</u>:  The lineups total point differential per 100 possessions.</span></li>
+					<li><span><u>AST%</u>:  Percentage of the field goals made by the lineup that were assisted.</span></li>
+					<li><span><u>AST/TO</u>:  Number of assists the lineup had in comparison to the number of turnovers they committed.</span></li>
+					<li><span><u>AST RATIO</u>:  Number of assists the lineup averaged per 100 offensive possessions.</span></li>
+					<li><span><u>OREB%</u>:  Percentage of available offensive rebounds the lineup collected while on the floor.</span></li>
+					<li><span><u>DREB%</u>:  Percentage of available defensive rebounds the lineup collected while on the floor.</span></li>
+					<li><span><u>REB%</u>:  Percentage of available rebounds the lineup collected while on the floor.</span></li>
+					<li><span><u>TO RATIO</u>:  Number of turnovers the lineup averaged per 100 total possessions.</span></li>
+					<li><span><u>EFG% (Effective Field Goal Percentage)</u>:  Measure of the lineup's field goal percentage with three pointer field goals being worth 1.5 times more than two point field goals.</span></li>
+					<li><span><u>TS% (True Shooting Percentage)</u>:  Shooting percentage of the lineup with the proportional value of three pointers, two pointers, and free throws factored in.</span></li>
+					<li><span><u>PACE</u>:  The number of possessions the lineup had per 48 minutes.</span></li>
+					<li><span><u>PIE (Player Impact Estimate)</u>:  Measure of the lineups overall statistical contribution in comparison to the total statistics in games they play in.</span></li>
+				</h5></ul>
+			</div>
+		</div>
+	</body>
+	<script>
+		// Close the dropdown if the user clicks outside of it
+		window.onclick = function(event) {
+			if (!event.target.matches('.dropbtn')) 
+			{
+				var dropdowns = document.getElementsByClassName("dropdownData");
+				var i;
+				for (i = 0; i < dropdowns.length; i++) {
+					var openDropdown = dropdowns[i];
+					if (openDropdown.classList.contains('show')) {
+						openDropdown.classList.remove('show');
+					}
+				}
+			}
+		}
+	</script>	
